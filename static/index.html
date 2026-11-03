@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101112">
+  <meta name="description" content="Less text. More meaning. Turn text, PDFs, and documents into clear summaries with PIXEL//BRIEF, powered by Groq.">
+  <title>PIXEL//BRIEF — Less text. More meaning.</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;450;500;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Pixel Brief home"><span class="brand-icon" aria-hidden="true">▦</span><span>PIXEL<span class="slash">//</span>BRIEF<span class="brand-dot">■</span></span></a>
+      <span class="header-caption">AI TEXT SUMMARIZER</span>
+      <nav aria-label="Main navigation"><a href="#workspace">Workspace <span aria-hidden="true">↗</span></a><a href="#how-it-works">How it works</a></nav>
+      <span class="system-status" id="system-status"><i></i><span>SYSTEM CONNECTING</span></span>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="tiny-cross" aria-hidden="true">✦</span> BIG IDEAS. SMALLER WORD COUNT.</div>
+          <h1 id="hero-title">LESS TEXT.<br><span>MORE MEANING.</span></h1>
+          <p>Turn long texts and documents into clear, concise<br class="desktop-break"> summaries powered by AI. Keep the signal. Skip the noise.</p>
+          <div class="hero-tags"><span><i></i> ONE CLICK TO CLARITY</span><span>YOUR LANGUAGE, PRESERVED</span></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <span class="art-coordinate top-coordinate">FIG. 01 / THE WORLD, DISTILLED</span>
+          <svg id="pixel-world" viewBox="0 0 430 300" role="presentation">
+            <g class="orbit-grid" fill="none" stroke="#343b31" stroke-width="1"><ellipse cx="218" cy="154" rx="176" ry="43" transform="rotate(-24 218 154)"/><path d="M28 154h375M218 16v275" stroke-dasharray="3 7"/></g>
+            <g id="globe-pixels" shape-rendering="crispEdges"></g>
+            <g fill="#b6ff8a"><path d="M59 71h5v-5h5v5h5v5h-5v5h-5v-5h-5zM353 217h4v-4h4v4h4v4h-4v4h-4v-4h-4z"/><path d="M366 76h5v5h-5zM95 246h4v4h-4zM315 34h3v3h-3z"/></g>
+            <ellipse cx="218" cy="154" rx="176" ry="43" transform="rotate(-24 218 154)" fill="none" stroke="#a1cd7f" stroke-width="1.5" stroke-dasharray="220 700" stroke-dashoffset="-262"/>
+            <rect x="53" y="207" width="9" height="9" fill="#b6ff8a" transform="rotate(-24 57 211)"/>
+          </svg>
+          <span class="art-coordinate bottom-coordinate"><span>INFORMATION → UNDERSTANDING</span><span>↗ 001</span></span>
+        </div>
+      </section>
+      <section class="workspace-section" id="workspace" aria-label="Summarization workspace">
+        <div class="workspace-intro"><span><i></i> YOUR CLARITY STARTS HERE</span><span>INPUT → DISTILL → UNDERSTAND</span></div>
+        <form id="summary-form" class="workspace" novalidate>
+          <section class="panel input-panel" aria-labelledby="input-title">
+            <div class="panel-heading"><h2 id="input-title"><span>01 /</span> INPUT</h2><span class="panel-label">THE RAW MATERIAL</span></div>
+            <div class="input-modes" role="tablist" aria-label="Input type"><button type="button" id="text-tab" class="mode active" role="tab" aria-selected="true" aria-controls="text-mode"><span aria-hidden="true">≡</span> Paste text</button><button type="button" id="file-tab" class="mode" role="tab" aria-selected="false" aria-controls="file-mode" tabindex="-1"><span aria-hidden="true">↥</span> Upload document</button></div>
+            <div id="text-mode" role="tabpanel" aria-labelledby="text-tab">
+              <label class="sr-only" for="source-text">Text to summarize</label>
+              <textarea id="source-text" placeholder="Drop your thoughts here.\n\nPaste an article, lecture notes, a research paper, or anything that could use a little less… everything." spellcheck="false" aria-describedby="input-count input-limit"></textarea>
+              <div class="editor-footer"><button type="button" id="sample-button">Try an example <span aria-hidden="true">↗</span></button><span id="input-count">0 / 20,000 chars</span><button type="button" id="clear-input" aria-label="Clear input">Clear</button></div>
+            </div>
+            <div id="file-mode" role="tabpanel" aria-labelledby="file-tab" hidden>
+              <label class="dropzone" id="dropzone" for="document-file"><svg width="42" height="48" viewBox="0 0 42 48" aria-hidden="true"><path d="M8 2h19l10 10v33H5V2h3m18 0v12h11M12 24h17m-17 7h17m-17 7h10" fill="none" stroke="currentColor" stroke-width="3"/></svg><strong id="file-label">Drop a document here</strong><span id="file-description">or click to browse your files</span><small>TXT · MD · PDF · DOCX / MAX 5 MB</small><input id="document-file" type="file" accept=".txt,.md,.pdf,.docx" class="sr-only"></label>
+              <div class="file-footer"><span id="file-info">No document selected</span><button type="button" id="remove-file" hidden>Remove ×</button></div>
+            </div>
+            <div class="input-options">
+              <fieldset><legend>SUMMARY LENGTH</legend><div class="length-options"><label class="length-card"><input type="radio" name="length" value="short"><span class="radio-dot"></span><span><strong>Short</strong><small>1–2 sentences</small></span><span class="length-icon" aria-hidden="true">▰<br>▬</span></label><label class="length-card"><input type="radio" name="length" value="standard" checked><span class="radio-dot"></span><span><strong>Standard</strong><small>3–4 sentences</small></span><span class="length-icon" aria-hidden="true">▰<br>▰<br>▬</span></label></div></fieldset>
+              <details id="api-settings"><summary><span aria-hidden="true">⌘</span> API settings <span class="key-status" id="key-status">OPTIONAL KEY</span></summary><div class="key-field"><label for="api-key">Your Groq API key</label><input id="api-key" name="groq-key" type="password" placeholder="gsk_…" autocomplete="off" spellcheck="false" maxlength="512" aria-describedby="key-help"><p id="key-help">Used for this request; never saved. Leave blank to use the server key. <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer">Get a key ↗</a></p></div></details>
+              <button type="submit" id="summarize-button" class="primary-button"><span id="submit-label">SUMMARIZE</span><span id="submit-arrow" aria-hidden="true">↗</span><span class="pixel-loader" id="button-loader" hidden aria-hidden="true"><i></i><i></i><i></i></span></button>
+              <p class="input-note" id="input-limit">One document. One AI request. Just the essentials.</p>
+            </div>
+          </section>
+          <section class="panel output-panel" id="output-panel" aria-labelledby="output-title" aria-busy="false">
+            <div class="panel-heading"><h2 id="output-title"><span>02 /</span> OUTPUT</h2><span class="output-badge" id="output-badge">STANDING BY</span></div>
+            <div class="output-toolbar"><span id="result-label">Your summary, minus the noise.</span><button id="copy-button" type="button" disabled><span aria-hidden="true">▣</span> <span id="copy-label">Copy</span></button></div>
+            <div class="output-body">
+              <div id="empty-state" class="empty-state"><svg class="pixel-document" width="100" height="100" viewBox="0 0 100 100" aria-hidden="true" shape-rendering="crispEdges"><path d="M26 10h36v6h6v6h6v62H26z" fill="#22291f"/><path d="M26 10h36v6H32v62h36V28h6v56H26zM62 16h6v6h-6zM68 22h6v6h-6z" fill="#a8d48a"/><path d="M39 36h23v5H39zm0 12h23v5H39zm0 12h15v5H39z" fill="#789766"/><path d="M11 41h5v-5h5v5h5v5h-5v5h-5v-5h-5zM77 63h4v-4h4v4h4v4h-4v4h-4v-4h-4z" fill="#b6ff8a"/></svg><h3 id="state-title">AWAITING INPUT<span class="terminal-cursor">_</span></h3><p id="state-description">Big ideas go in. A little clarity comes out.<br>Add your text and let’s get to the point.</p><span class="empty-hint" id="empty-hint">[ YOUR NEXT AHA MOMENT LIVES HERE ]</span></div>
+              <div id="summary-result" class="summary-result" tabindex="0" aria-label="Generated summary" hidden></div>
+              <div id="error-state" class="error-state" hidden><span class="error-code">! / REQUEST INTERRUPTED</span><h3>Let’s try that again.</h3><p id="error-message" role="alert"></p><span class="error-help">Your source is still here. Fix the issue and hit summarize.</span></div>
+            </div>
+            <div class="output-footer"><span id="output-status" role="status" aria-live="polite"><i></i> AWAITING INPUT</span><span id="output-meta">READY WHEN YOU ARE</span></div>
+          </section>
+        </form>
+        <div class="workspace-caption"><span><span aria-hidden="true">↳</span> Less scrolling. More understanding.</span><span>BUILT FOR HUMAN ATTENTION SPANS.</span></div>
+      </section>
+      <section id="how-it-works" class="how-section" aria-labelledby="how-title"><div class="how-heading"><span class="eyebrow">A SHORTCUT TO THE POINT</span><h2 id="how-title">Three steps. Zero noise.</h2></div><div class="how-step"><span>01</span><div><h3>Bring the long version.</h3><p>Paste your text or upload a document.</p></div></div><div class="how-step"><span>02</span><div><h3>Choose your brief.</h3><p>A quick take or a little more context.</p></div></div><div class="how-step"><span>03</span><div><h3>Make room for meaning.</h3><p>Read, copy, and get on with your day.</p></div></div></section>
+      <p class="privacy-note">Your text is sent to Groq to generate the summary. This app doesn’t save documents or API keys. AI summaries can miss details; check important facts against your source.</p>
+    </main>
+    <footer class="site-footer"><a class="footer-brand" href="/">PIXEL<span>//</span>BRIEF</a><span>SMALLER TEXT. BIGGER PICTURE.</span><a href="https://groq.com" target="_blank" rel="noopener noreferrer">POWERED BY <strong>groq</strong> <span aria-hidden="true">↗</span></a></footer>
+  </div>
+</body>
+</html>
